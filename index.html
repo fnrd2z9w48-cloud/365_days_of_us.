@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>365 Days of Us ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      color: #4b2632;
+
+      overflow-x: hidden;
+
+      /*
+        YOUR PHOTO IS THE BACKGROUND.
+        Keep the filename exactly:
+        background.jpg
+      */
+      background:
+        linear-gradient(
+          rgba(69, 20, 35, 0.28),
+          rgba(69, 20, 35, 0.35)
+        ),
+        url("background.jpg")
+        center center / cover fixed;
+    }
+
+
+    /* =========================
+       PAGE SYSTEM
+       ========================= */
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+
+      padding: 25px 15px;
+
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+
+      animation: fadeIn 0.65s ease;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+
+    /* =========================
+       TRANSLUCENT INVITATION CARD
+       ========================= */
+
+    .card {
+      position: relative;
+
+      width: min(620px, 94vw);
+
+      min-height: 650px;
+
+      padding: 55px 45px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      text-align: center;
+
+      /*
+        THIS IS THE IMPORTANT PART.
+
+        The card is translucent,
+        so your background picture
+        remains visible through it.
+      */
+      background: rgba(255, 247, 249, 0.40);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+      border-radius: 28px;
+
+      box-shadow:
+        0 20px 60px
+        rgba(30, 10, 18, 0.28),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.45);
+
+      /*
+        Slight glass effect without
+        destroying visibility of the photo.
+      */
+      backdrop-filter: blur(4px);
+
+      -webkit-backdrop-filter: blur(4px);
+
+      overflow: hidden;
+    }
+
+
+    /* Small decorative hearts */
+
+    .card::before {
+      content: "♡";
+
+      position: absolute;
+
+      top: 20px;
+      left: 25px;
+
+      font-size: 24px;
+
+      color:
+        rgba(157, 53, 78, 0.45);
+    }
+
+    .card::after {
+      content: "♡";
+
+      position: absolute;
+
+      bottom: 18px;
+      right: 25px;
+
+      font-size: 24px;
+
+      color:
+        rgba(157, 53, 78, 0.45);
+    }
+
+
+    /* =========================
+       HEADINGS
+       ========================= */
+
+    h1 {
+      margin:
+        0 0 22px;
+
+      font-size:
+        clamp(38px, 7vw, 58px);
+
+      line-height: 1.1;
+
+      color: #7d2943;
+    }
+
+    h2 {
+      margin:
+        0 0 30px;
+
+      font-size:
+        clamp(30px, 6vw, 43px);
+
+      line-height: 1.15;
+
+      color: #7d2943;
+    }
+
+    h3 {
+      margin:
+        0 0 25px;
+
+      font-size:
+        clamp(28px, 5vw, 40px);
+
+      color: #7d2943;
+    }
+
+    .heart {
+      color: #c62848;
+    }
+
+
+    /* =========================
+       PAGE 1
+       ========================= */
+
+    .subtitle {
+      font-size: 20px;
+
+      line-height: 1.6;
+
+      margin-bottom: 12px;
+    }
+
+    .for-you {
+      font-size: 22px;
+
+      margin:
+        10px 0 35px;
+
+      color: #7d2943;
+    }
+
+
+    /* =========================
+       PAGE 2
+       ========================= */
+
+    .message {
+      width: 100%;
+
+      max-width: 540px;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+
+      text-align: left;
+    }
+
+    .message p {
+      margin:
+        0 0 24px;
+    }
+
+    .message .final-anniversary-line {
+      margin-top: 34px;
+
+      text-align: center;
+
+      font-size: 18px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       PAGE 3
+       ========================= */
+
+    .special-day {
+      max-width: 510px;
+
+      font-size: 18px;
+
+      line-height: 1.75;
+    }
+
+    .special-day p {
+      margin:
+        0 0 24px;
+    }
+
+
+    /* =========================
+       PAGE 4
+       ========================= */
+
+    .question {
+      font-size:
+        clamp(34px, 7vw, 50px);
+
+      margin:
+        10px 0 45px;
+
+      color: #7d2943;
+    }
+
+    .choice-buttons {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 18px;
+
+      width: 100%;
+
+      max-width: 300px;
+    }
+
+
+    /* =========================
+       BUTTONS
+       ========================= */
+
+    button {
+      border: none;
+
+      cursor: pointer;
+
+      font-family: inherit;
+
+      font-size: 17px;
+
+      padding:
+        15px 25px;
+
+      border-radius: 999px;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform:
+        translateY(-2px);
+    }
+
+    button:active {
+      transform:
+        scale(0.97);
+    }
+
+    .primary {
+      margin-top: 12px;
+
+      background: #8f304c;
+
+      color: white;
+
+      box-shadow:
+        0 8px 20px
+        rgba(143, 48, 76, 0.25);
+    }
+
+    .primary:hover {
+      box-shadow:
+        0 10px 25px
+        rgba(143, 48, 76, 0.35);
+    }
+
+    .secondary {
+      background:
+        rgba(255, 255, 255, 0.60);
+
+      color: #7d2943;
+
+      border:
+        1px solid
+        rgba(125, 41, 67, 0.25);
+    }
+
+
+    /* =========================
+       PAGE 5
+       ========================= */
+
+    .warning-page p {
+      max-width: 470px;
+
+      font-size: 19px;
+
+      line-height: 1.7;
+
+      margin:
+        0 0 30px;
+    }
+
+
+    /* =========================
+       PAGE 6
+       ========================= */
+
+    .flash-page h2 {
+      margin-bottom: 18px;
+    }
+
+    .flash-page p {
+      font-size: 20px;
+
+      margin: 0;
+    }
+
+
+    /* =========================
+       PAGE 7
+       ========================= */
+
+    .date-details {
+      width: 100%;
+
+      max-width: 430px;
+
+      margin:
+        10px auto 25px;
+
+      padding: 22px;
+
+      background:
+        rgba(255, 255, 255, 0.30);
+
+      border:
+        1px solid
+        rgba(125, 41, 67, 0.13);
+
+      border-radius: 20px;
+    }
+
+    .date-details p {
+      margin:
+        10px 0;
+
+      font-size: 19px;
+
+      line-height: 1.5;
+    }
+
+    .date-details .date {
+      font-size: 25px;
+
+      color: #7d2943;
+
+      font-weight: bold;
+    }
+
+    .date-details .time {
+      font-size: 24px;
+
+      color: #7d2943;
+    }
+
+    .final-message {
+      max-width: 510px;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+    }
+
+    .final-message p {
+      margin:
+        0 0 20px;
+    }
+
+    .love {
+      color: #7d2943;
+
+      font-size: 20px;
+    }
+
+
+    /* =========================
+       ANIMATIONS
+       ========================= */
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+    }
+
+    @keyframes flashIn {
+      0% {
+        opacity: 0;
+
+        transform:
+          scale(0.96);
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          scale(1);
+      }
+    }
+
+    .flash-page .card {
+      animation:
+        flashIn 0.5s ease;
+    }
+
+
+    /* =========================
+       PHONE SCREEN
+       ========================= */
+
+    @media (max-width: 600px) {
+
+      .page {
+        padding:
+          18px 12px;
+      }
+
+      .card {
+        width: 94vw;
+
+        min-height: 650px;
+
+        padding:
+          45px 25px;
+
+        border-radius: 24px;
+      }
+
+      .message {
+        font-size: 16px;
+
+        line-height: 1.65;
+      }
+
+      .special-day {
+        font-size: 17px;
+      }
+
+      .final-message {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- ==========================================
+       PAGE 1 — OPENING
+       ========================================== -->
+
+  <section
+    class="page active"
+    id="page1"
+  >
+
+    <div class="card">
+
+      <h1>
+        365 Days of Us
+        <span class="heart">❤️</span>
+      </h1>
+
+      <div class="subtitle">
+        One year. One love. One very special day.
+      </div>
+
+      <div class="for-you">
+        For my baby
+        <span class="heart">❤️</span>
+      </div>
+
+      <button
+        class="primary"
+        onclick="showPage(2)"
+      >
+        Tap to continue ❤️
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================
+       PAGE 2 — ONE YEAR OF US
+       ========================================== -->
+
+  <section
+    class="page"
+    id="page2"
+  >
+
+    <div class="card">
+
+      <h2>
+        One Year of Us
+        <span class="heart">❤️</span>
+      </h2>
+
+
+      <div class="message">
+
+        <p>
+          When I think about everything we’ve shared together, all the
+          conversations, the ragebait 😭, the jokes, the memories, little
+          moments and everything in between 😝. I honestly can’t believe how
+          quickly we got here.
+        </p>
+
+
+        <p>
+          This past year has given me so many memories about us that I will
+          always carry with me, and even though we’ve had our moments, I’m so
+          grateful for you, so grateful that you still choose to love me every
+          day and I’m so so sooo grateful for the relationship that just came
+          to be when I least expected it. Oh my days, I can’t believe I
+          actually found love on Tinder mwebantu mungani boza 😭🤣❤️.
+        </p>
+
+
+        <p>
+          I love the memories we’ve made, and most importantly, I love us. ❤️
+        </p>
+
+
+        <p class="final-anniversary-line">
+          So here’s to 365 days of us, and hopefully many, many, many more. ❤️
+        </p>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="showPage(3)"
+      >
+        There’s something for you ❤️
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================
+       PAGE 3 — SPECIAL DAY
+       ========================================== -->
+
+  <section
+    class="page"
+    id="page3"
+  >
+
+    <div class="card">
+
+      <h2>
+        Our Special Day
+        <span class="heart">❤️</span>
+      </h2>
+
+
+      <div class="special-day">
+
+        <p>
+          Our anniversary is today...
+        </p>
+
+
+        <p>
+          But because you obviously have work and whatnot, we’re going to do
+          it together on Saturday 😗
+        </p>
+
+
+        <p>
+          We’re going to Paint with Blue in Avondale for the Paint & Sip date
+          we’ve always planned for but ended up not doing.
+        </p>
+
+
+        <p>
+          So I’m informally inviting you to come with me... ❤️😗
+        </p>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="showPage(4)"
+      >
+        Continue ❤️
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================
+       PAGE 4 — RSVP
+       ========================================== -->
+
+  <section
+    class="page"
+    id="page4"
+  >
+
+    <div class="card">
+
+      <h3>
+        So...
+        <span class="heart">❤️</span>
+      </h3>
+
+
+      <div class="question">
+        Are you coming?
+      </div>
+
+
+      <div class="choice-buttons">
+
+        <button
+          class="primary"
+          onclick="coming()"
+        >
+          I’m coming ❤️
+        </button>
+
+
+        <button
+          class="secondary"
+          onclick="showPage(5)"
+        >
+          I’m not coming 😂
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================
+       PAGE 5 — NOT COMING
+       ========================================== -->
+
+  <section
+    class="page"
+    id="page5"
+  >
+
+    <div class="card warning-page">
+
+      <h2>
+        Awe awe sorry my love 😂❤️
+      </h2>
+
+
+      <p>
+        You don’t really have a choice anyway. It’s by force.
+        Just click “I’m coming”, boss sure. 😂❤️
+      </p>
+
+
+      <button
+        class="primary"
+        onclick="coming()"
+      >
+        I’m coming ❤️
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================
+       PAGE 6 — QUICK FLASH
+       ========================================== -->
+
+  <section
+    class="page flash-page"
+    id="page6"
+  >
+
+    <div class="card">
+
+      <h2>
+        You’re very smart. ❤️
+      </h2>
+
+
+      <p>
+        You made the right choice. 😂
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================
+       PAGE 7 — FINAL DATE
+       ========================================== -->
+
+  <section
+    class="page"
+    id="page7"
+  >
+
+    <div class="card">
+
+      <h2>
+        It’s a Date
+        <span class="heart">❤️</span>
+      </h2>
+
+
+      <div class="final-message">
+
+        <p>
+          Keep the date and time in mind.
+        </p>
+
+      </div>
+
+
+      <div class="date-details">
+
+        <p class="date">
+          Saturday, 10th October
+        </p>
+
+
+        <p class="time">
+          13:00
+        </p>
+
+
+        <p>
+          Paint with Blue — Avondale
+        </p>
+
+      </div>
+
+
+      <div class="final-message">
+
+        <p>
+          I’ll try my best to be very early, so don’t be late. 😂
+        </p>
+
+
+        <p>
+          I can’t wait to spend the day with you, make more memories, laugh,
+          maybe laugh at some people 😂, paint, sip, and just celebrate our
+          365 days of us.
+        </p>
+
+
+        <p class="love">
+          I love you, my baby. 😗❤️
+        </p>
+
+
+        <p class="love">
+          Always and forever. ♾️❤️
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+
+  <script>
+
+    function showPage(pageNumber) {
+
+      document
+        .querySelectorAll(".page")
+        .forEach(function(page) {
+
+          page.classList.remove("active");
+
+        });
+
+
+      document
+        .getElementById("page" + pageNumber)
+        .classList.add("active");
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function coming() {
+
+      /*
+        Show the quick confirmation page.
+      */
+
+      showPage(6);
+
+
+      /*
+        After 1.4 seconds,
+        automatically show the final date.
+      */
+
+      setTimeout(function() {
+
+        showPage(7);
+
+      }, 1400);
+
+    }
+
+  </script>
+
+
+</body>
+</html>
